@@ -1,0 +1,28 @@
+form: <form 
+accept-charset="utf8" 
+action="//127.0.0.1:8001/jasmin_smsc_gui/manage_imts" 
+enctype="multipart/form-data" method="POST">
+    <div class="field">
+        <label class="label" for="j_imt_mttype">Type</label>
+        <div class="select">
+            <select class="control select" id="j_imt_mttype" name="mttype">
+                <option value=""></option>
+                <option value="DefaultInterceptor">DefaultInterceptor</option>
+                <option value="StaticMTInterceptor">StaticMTInterceptor</option>
+            </select>
+        </div>
+        <p class="help">Type of interceptor</p>
+    </div>
+    <div class="field">
+        <label class="label" for="j_imt_mtorder">Order</label>
+        <div class="control">
+            <input class="input" id="j_imt_mtorder" name="mtorder" type="text"/>
+        </div>
+        <p class="help">Interceptor will evaluate in descending order</p>
+    </div>
+    <div class="field">
+        <label class="label" for="j_imt_mtfilters">Filter(s)</label>
+        <div class="select"><select class="control select" id="j_imt_mtfilters" multiple="multiple" name="mtfilters"><option value="57">12</option><option value="59">dst_346</option><option value="62">mtn_3445</option><option value="60">mtn_346_trx</option><option value="63">mtn_filter</option><option value="61">test_345</option><option value="64">test_filters</option><option value="58">TF</option></select></div><p class="help">Filters need to be added prior to adding routes. Please see filter management</p></div><div class="field"><label class="label" for="j_imt_mtscript">Script</label><div class="control"><input class="input" id="j_imt_mtscript" name="mtscript" type="text"/></div><p class="help">Path and script must exist. Only python 3 scripts allowed now</p></div><div class="field"><div class="control"><input class="button is-primary" type="submit" value="Submit"/></div></div><input name="_formname" type="hidden" value="j_imt"/><input name="_formkey" type="hidden" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cyI6IjE3MDQ2MzM1NjkuOTI3NjAxIn0.VX0BPDBqTqJzN7CeJnG5mRLRBjvDUOD8_G6Ib_qAYKg"/>
+
+
+</form>

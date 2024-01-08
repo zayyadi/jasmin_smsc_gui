@@ -2,7 +2,8 @@
 This file defines cache, session, and translator T object for the app
 These are fixtures that every app needs so probably you will not be editing this file
 """
-import os
+# import os
+import memcache
 import sys
 import logging
 from py4web import Session, Cache, Translator, Flash, DAL, Field, action
@@ -13,6 +14,7 @@ from py4web.utils.tags import Tags
 from py4web.utils.factories import ActionFactory
 from . import settings
 from .jtel import Jptelnet
+
 # #######################################################
 # implement custom loggers form settings.LOGGERS
 # #######################################################
@@ -66,8 +68,6 @@ elif settings.SESSION_TYPE == "redis":
     )
     session = Session(secret=settings.SESSION_SECRET_KEY, storage=conn)
 elif settings.SESSION_TYPE == "memcache":
-    import memcache, time
-
     conn = memcache.Client(settings.MEMCACHE_CLIENTS, debug=0)
     session = Session(secret=settings.SESSION_SECRET_KEY, storage=conn)
 elif settings.SESSION_TYPE == "database":
@@ -156,10 +156,12 @@ if settings.OAUTH2OKTA_CLIENT_ID:
 # files uploaded and reference by Field(type='upload')
 # #######################################################
 if settings.UPLOAD_FOLDER:
-    @action('download/<filename>')                                                   
-    @action.uses(db)                                                                                           
+
+    @action("download/<filename>")
+    @action.uses(db)
     def download(filename):
-        return downloader(db, settings.UPLOAD_FOLDER, filename) 
+        return downloader(db, settings.UPLOAD_FOLDER, filename)
+
     # To take advantage of this in Form(s)
     # for every field of type upload you MUST specify:
     #
